@@ -1,0 +1,60 @@
+<ng-template appPlaceholderDirective></ng-template>
+
+<div *ngIf="isLoading">
+    <app-loading></app-loading>
+</div>
+<!--Approach 1-->
+<!-- <div class="alert alert-danger" *ngIf="!(errMessage == '')">
+    {{errMessage }}
+</div> -->
+
+<!--Approach 2-->
+<!-- <app-alerts [message]="errMessage" *ngIf="!(errMessage == '')" (close)="onClose()"> </app-alerts> -->
+
+<!--Approach 3-->
+
+
+
+<div class="alert alert-success" *ngIf="!(successMessage == '')">
+    {{successMessage }}
+</div>
+
+<form #authForm="ngForm" (ngSubmit)="onFormSubmit(authForm)" *ngIf="!isLoading">
+    <div class="row">
+        <div class="col-md-6">
+            <label for="name">User id</label>
+            <input type="email" 
+                   id="name" 
+                   class="form-control"
+                   ngModel
+                   name="userId"
+                   required
+                   email
+            >    
+        </div>
+        <div class="col-md-6">
+            <label for="name">Password</label>
+            <input type="password" 
+                   id="password" 
+                   class="form-control"
+                   ngModel
+                   name="password"
+                   required
+                   minlength = 6
+            > 
+        </div>    
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col">
+            <button class="btn btn-primary col-md-1" type="submit" [disabled]="authForm.invalid">
+                Signup 
+            </button>  
+            &nbsp;      
+            <button class="btn btn-primary col-md-1" type="button" [disabled]="authForm.invalid" (click)="onSignin(authForm)">
+                Signin
+            </button>        
+        </div>
+        
+    </div>
+</form>
